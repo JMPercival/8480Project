@@ -19,7 +19,7 @@ Honestly, this does not really help anyone except for myself for now. This is a 
 |Risk name (value)  | Impact     | Likelihood | Description | Mitigation |
 |-------------------|------------|------------|-------------|------------|
 |Accelerometer too sensitive (32) | 4 | 8 | Accelerometer could pick up too much noise and make it really hard to determine what signal we want and what signal we should cut out. | Try to eliminate outliers in the data, smooth out the waves, and go from there. |
-|Accelerometer not sensitive enough (32) | 4 | 8 | Accelerometer could pick up nothing dependent on the type of keyboard, type of desk, and what the desk is sitting on. | Experiment with different enviroments and move the accelerometer closer to the keyboard. |
+|Accelerometer not sensitive enough (32) | 4 | 8 | Accelerometer could pick up nothing dependent on the type of keyboard, type of desk, and what the desk is sitting on. | Experiment with different environments and move the accelerometer closer to the keyboard. |
 |Device could be DOA (8) | 8 | 1 | My accelerometer could be dead on arrival, which would set my timeline back about a week. | Buy a new device and attempt to borrow one while I am waiting for my new device to ship. |
 |My javascript skills are inept (32) | 8 | 4 | My comfortability around javascript is relatively low, so programming the phone to do what I want might be a challenge at times. | The migration would be to "try harder" and put more time into it. |
 |Time could run short (30) | 6 | 5 | I am not going to have as much time to devote to this project as I would like to. I very well could run out of time to work on the project and polish it the way I would like to. | Accept the risk. |
@@ -39,12 +39,12 @@ Honestly, this does not really help anyone except for myself for now. This is a 
 	* Acceptance criteria includes build out an overall time counter to determine how long the person was doing such an activity.
 
 #### Misuser Stories
-1. As a misuser, I want to throw off the sensor by pounding on the desk so that it can not track my activites as easily.
+1. As a misuser, I want to throw off the sensor by pounding on the desk so that it can not track my activities as easily.
 
 	* Counter to this would be to remove outliers in data.
 
 2. As a misuser, I want to sniff the data sent to the phone to try to gleam valuable information so that I can continue my attack on my target.
 
-	* Couter to this would be to either encrypt the data in some manner before sending it across, or simply do not send valuable information.
+	* Counter to this would be to either encrypt the data in some manner before sending it across, or simply do not send valuable information.
 
 
