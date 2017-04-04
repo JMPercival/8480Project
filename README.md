@@ -30,11 +30,11 @@ Honestly, this does not really help anyone except for myself for now. This is a 
 
 Acceptance criteria includes getting the keyboard prototype to work and relaying that information to the phone.
 
-1. As a intelligence official, I want to know what my target is doing at their desk so that I can better profile the user.
+2. As a intelligence official, I want to know what my target is doing at their desk so that I can better profile the user.
 
 Acceptance criteria includes building out the three prototypes and getting them to work nicely together.
 
-1. As a boss, I would like to know if my employees are actually working so that I can tell how much time they kill talking or looking at their phones. 
+3. As a boss, I would like to know if my employees are actually working so that I can tell how much time they kill talking or looking at their phones. 
 
 Acceptance criteria includes build out an overall time counter to determine how long the person was doing such an activity.
 
@@ -43,6 +43,6 @@ Acceptance criteria includes build out an overall time counter to determine how 
 
 Counter to this would be to remove outliers in data.
 
-1. As a misuser, I want to sniff the data sent to the phone to try to gleam valuable information so that I can continue my attack on my target.
+2. As a misuser, I want to sniff the data sent to the phone to try to gleam valuable information so that I can continue my attack on my target.
 
 Couter to this would be to either encrypt the data in some manner before sending it across, or simply do not send valuable information.
