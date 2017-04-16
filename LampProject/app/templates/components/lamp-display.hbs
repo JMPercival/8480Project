@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h4>Metawear Device Connection</h4>
+		{{#unless metawearConnected}}
+			<button type="button" class="btn" {{action 'connect'}}>Start</button>
+		{{else}}
+			<button type="button" class="btn red" {{action 'disconnect'}}>Stop</button>
+		{{/unless}}
+	</div>
+</div>
+
+
+{{#if metawearConnected}}
+	{{time-series-chart lineData=MWaccelHistory}}
+{{/if}}
