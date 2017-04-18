@@ -64,3 +64,7 @@ Honestly, this does not really help anyone except for myself for now. This is a 
 	* Decides whether or not to turn the power on
 * Lamp
 	* Turns On/Off dependent on if there is any electricity flowing to it
+
+### MileStone2 Slides
+[MileStone2](https://docs.google.com/a/unomaha.edu/presentation/d/1KU3k5oo_3gfoYH_ApWfizyJg5P5Qq1u6vHYiD63HEP4/edit?usp=sharing)
+
