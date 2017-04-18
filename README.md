@@ -57,10 +57,10 @@ Honestly, this does not really help anyone except for myself for now. This is a 
 	* Takes in input to the Accelerometer
 	* Sends Accelerometer Data via Bluetooth to the Android Tablet
 * Android Table
-	* Recieves Accelerometer Data via Bluetooth
+	* Receives Accelerometer Data via Bluetooth
 	* Computes Data and either does nothing or sends a command to the webserver via Wireless
 * Webserver
-	* Recieves Command via Wireless
+	* Receives Command via Wireless
 	* Decides whether or not to turn the power on
 * Lamp
 	* Turns On/Off dependent on if there is any electricity flowing to it
