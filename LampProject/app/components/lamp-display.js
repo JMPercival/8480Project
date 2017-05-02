@@ -50,7 +50,8 @@ export default Ember.Component.extend({
 				var current_time = Date.now();
 				var time_activated = component.get("timeActivated");
 				//if it has been 60 secs. since last activation
-				if(current_time - time_activated >= 60000){ 
+				//10 seconds for presentation
+				if(current_time - time_activated >= 10000){ 
 					var xmlHttp = new XMLHttpRequest();
 					// false for synchronous request
 					xmlHttp.open( "GET", theUrl+"off", false ); 
