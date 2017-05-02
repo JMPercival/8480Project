@@ -68,3 +68,35 @@ Honestly, this does not really help anyone except for myself for now. This is a 
 ### MileStone2 Slides
 [MileStone2](https://docs.google.com/a/unomaha.edu/presentation/d/1KU3k5oo_3gfoYH_ApWfizyJg5P5Qq1u6vHYiD63HEP4/edit?usp=sharing)
 
+### Requirements
+#### Hardware
+[Metawear R](https://mbientlab.com/product/metawearr/)
+Android [Version >=6.0.1]
+Computer
+
+#### Software
+* Arch Linux installation [If using another distribution, modify the setup.sh script]
+* ADB (Android Debug Bridge)
+	* `Pacman -S android-tools`
+* Android Studio setup (Properly w/enviroment variables set)
+	* [Tutorial Here](https://developer.android.com/studio/install.html)
+* Android SDK installed (Again, properly)
+	* [Tutorial Here](http://www.androidcentral.com/installing-android-sdk-windows-mac-and-linux-tutorial)
+* Java SDK
+	* [Arch Wiki Here](https://wiki.archlinux.org/index.php/java)
+* Npm (Handled by setup.sh)
+	* cordova
+	* ember-cli
+		* ember-cordova
+		* ember-charts
+		* ember-bootstap
+* Bower (Handled by setup.sh)
+* Plugins: (Handled by setup.sh)
+	* cordova-plugin-device-motion
+	* https://github.com/mbientlab-projects/MetaWearCordova-Plugin
+
+### Installation
+If required pre-reqs met above, running ./setup.sh as an unpriv user with sudo access in this directory should be sufficient.
+
+### Getting Started
+Connect the android device and confirm it is able to be talked to via adb. Turn on allowing apps from somewhere other than the Play store to be installed. Change the MAC address in "app/components/lamp-display.js", it is currently set to DA:88:BB:64:7B:CB. Run the command ./run.sh.
