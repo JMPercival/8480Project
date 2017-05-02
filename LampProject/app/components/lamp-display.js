@@ -4,10 +4,80 @@ export default Ember.Component.extend({
 	metawearConnected: false,
 	macAddressOfBoard: 'DA:88:BB:64:7B:CB',
 	MWaccelHistory: [],
+	activeData: [],
 	timeStacks: [],
 	activityPresent: 0,
 	getRequestSent: 0,
 	timeActivated: 0,
+	init: function(){
+		this._super();
+		var component = this;
+		this.get('runCheck')(component);
+	},
+	runCheck: function(component){
+		Ember.run.later(function(){
+			//the get request url after conditions have been met
+			var theUrl = "http://10.12.16.146:8000/";
+			var get_request_sent = component.get('getRequestSent');
+			var activity_present = component.get('activityPresent');
+			var active_data = component.get('activeData');
+			var cur_date = new Date();
+			var temp_time = cur_date.getTime();
+
+			//sends the on request if we see activity present
+			//and the on request has not been sent yet
+			if(get_request_sent == 0 && activity_present == 1){
+				var xmlHttp = new XMLHttpRequest();
+				//Not asynchronous because at this point
+				//our objective has been achieved if this sends
+				xmlHttp.open( "GET", theUrl+"on", false ); // false for synchronous request
+				xmlHttp.send( null );
+				console.log("On Request Sent to:" + theUrl + "on");
+				//can use this if we want it later
+				//var response_recieved = xmlHttp.responseText;	
+				active_data.addObjects([
+					{"time":new Date(temp_time-1),"value":0},
+					{"time":new Date(temp_time),"value":1}
+				]);
+				get_request_sent = 1;
+				component.set("getRequestSent", get_request_sent);
+				component.set("timeActivated", Date.now());
+			}
+			//sends the off request if 60 seconds have passed without activity
+			//otherwise, resets the counter
+			if(get_request_sent==1)
+			{
+				var current_time = Date.now();
+				var time_activated = component.get("timeActivated");
+				//if it has been 60 secs. since last activation
+				if(current_time - time_activated >= 60000){ 
+					var xmlHttp = new XMLHttpRequest();
+					// false for synchronous request
+					xmlHttp.open( "GET", theUrl+"off", false ); 
+					xmlHttp.send( null );
+					console.log("Off Request Sent to:" + theUrl + "off");
+					//can use this if we want it later
+					//var response_recieved = xmlHttp.responseText;
+					active_data.addObjects([
+						{"time":new Date(temp_time-1),"value":1},
+						{"time":new Date(temp_time),"value":0}
+					]);
+
+					console.log(active_data);
+					component.set("getRequestSent",0);
+				}
+				else{
+					if(activity_present == 1){
+						component.set("timeActivated", current_time);
+					}
+				}
+				component.set("activityPresent", 0);
+			}
+
+			component.get('runCheck')(component);
+		}, 1000);
+	},
+
 	updateAccelData: function(component, result){
 		component.set('z', result.z);
 		var current_time = Date.now();
@@ -17,7 +87,7 @@ export default Ember.Component.extend({
 		var activity_present = component.get('activityPresent');
 		//Has to be set lower than normal(.976) because
 		//when the device gets warm, the noise increases
-		if(result.z <= 1.005 && result.z >= 0.976){
+		if(result.z <= 1.008 && result.z >= 0.976){
 			result.z = 1;
 		}
 		else{
@@ -28,7 +98,7 @@ export default Ember.Component.extend({
 					if(time_stacks[i].length >= 30){
 						activity_present = 1;
 						component.set('activityPresent',  activity_present);
-						console.log('GOT IT!!!!');
+						//console.log('GOT IT!!!!');
 						time_stacks = [];
 						break;
 					}
@@ -71,57 +141,6 @@ export default Ember.Component.extend({
 						}
 					);
 
-					setInterval(function(){
-						//the get request url after conditions have been met
-						var theUrl = "http://192.168.1.222:8000/";
-						
-						var get_request_sent = component.get('getRequestSent');
-						var activity_present = component.get('activityPresent');
-
-						//sends the on request if we see activity present
-						//and the on request has not been sent yet
-						if(get_request_sent == 0 && activity_present == 1){
-							var xmlHttp = new XMLHttpRequest();
-							//Not asynchronous because at this point
-							//our objective has been achieved if this sends
-							xmlHttp.open( "GET", theUrl+"on", false ); // false for synchronous request
-							xmlHttp.send( null );
-							console.log("On Request Sent to:" + theUrl + "on");
-							//can use this if we want it later
-							//var response_recieved = xmlHttp.responseText;	
-							get_request_sent = 1;
-							component.set("getRequestSent", get_request_sent);
-							component.set("timeActivated", Date.now());
-						}
-			
-						//sends the off request if 60 seconds have passed without activity
-						//otherwise, resets the counter
-						if(get_request_sent==1)
-						{
-							var current_time = Date.now();
-							var time_activated = component.get("timeActivated");
-							//if it has been 60 secs. since last activation
-							if(current_time - time_activated >= 60000){ 
-								var xmlHttp = new XMLHttpRequest();
-								// false for synchronous request
-								xmlHttp.open( "GET", theUrl+"off", false ); 
-								xmlHttp.send( null );
-								console.log("Off Request Sent to:" + theUrl + "off");
-								//can use this if we want it later
-								//var response_recieved = xmlHttp.responseText;
-								component.set("getRequestSent",0);
-							}
-							else{
-								if(activity_present == 1){
-									component.set("timeActivated", current_time);
-								}
-							}
-							
-							component.set("activityPresent", 0);
-						}
-
-
-					}, 1000);
 				}
 				catch(err){
 					console.log('error: '+err);
