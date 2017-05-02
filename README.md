@@ -84,14 +84,14 @@ Computer
 	* [Tutorial Here](http://www.androidcentral.com/installing-android-sdk-windows-mac-and-linux-tutorial)
 * Java SDK
 	* [Arch Wiki Here](https://wiki.archlinux.org/index.php/java)
-* Npm (Handled by setup.sh)
+* Npm **(Handled by setup.sh)**
 	* cordova
 	* ember-cli
 		* ember-cordova
 		* ember-charts
 		* ember-bootstap
-* Bower (Handled by setup.sh)
-* Plugins: (Handled by setup.sh)
+* Bower **(Handled by setup.sh)**
+* Plugins: **(Handled by setup.sh)**
 	* cordova-plugin-device-motion
 	* https://github.com/mbientlab-projects/MetaWearCordova-Plugin
 
